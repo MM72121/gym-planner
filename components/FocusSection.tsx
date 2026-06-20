@@ -37,10 +37,10 @@ export default function FocusSection({ volumes }: FocusSectionProps) {
     }
 
     const ratio = setCount / medianVolume;
-    // Focused muscles use major muscle thresholds
-    if (ratio >= 1.5) {
+    // Focused muscles have higher thresholds to encourage more volume
+    if (ratio >= 2.0) {
       return { bar: "bg-orange-500", status: "Overtrained", badge: "bg-orange-100 text-orange-700" };
-    } else if (ratio >= 0.5) {
+    } else if (ratio >= 0.33) {
       return { bar: "bg-green-600", status: "Optimal", badge: "bg-green-100 text-green-700" };
     } else {
       return { bar: "bg-red-600", status: "Undertrained", badge: "bg-red-100 text-red-700" };

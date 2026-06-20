@@ -77,6 +77,9 @@ export default async function Home() {
                 }
               }
 
+              // Note: Top Trained Muscles uses major muscle thresholds
+              // (Focus thresholds only apply when explicitly set in Preferences)
+
               return (
                 <div key={volume.muscle_group}>
                   <div className="flex justify-between items-center mb-2">

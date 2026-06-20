@@ -56,12 +56,12 @@ export default function VolumePage() {
       const ratio = volume.set_count / medianVolume;
 
       if (isFocused) {
-        // Focused muscles use major muscle thresholds
-        if (ratio >= 1.5) {
+        // Focused muscles: higher bar to encourage more volume
+        if (ratio >= 2.0) {
           barColor = "bg-orange-500";
           statusBadge = "Overtrained";
           badgeColor = "bg-orange-100 text-orange-700";
-        } else if (ratio >= 0.5) {
+        } else if (ratio >= 0.33) {
           barColor = "bg-green-600";
           statusBadge = "Optimal";
           badgeColor = "bg-green-100 text-green-700";
