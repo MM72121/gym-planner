@@ -68,22 +68,22 @@ export default function FocusSection({ volumes }: FocusSectionProps) {
   const maxSets = Math.max(...focusData.map((f) => f.sets), 1);
 
   return (
-    <div className="mb-12 bg-red-50 border border-red-200 rounded-lg p-6">
-      <h2 className="text-lg font-semibold text-red-900 mb-4">
+    <div className="mb-8 sm:mb-12 bg-red-50 border border-red-200 rounded-lg p-4 sm:p-6">
+      <h2 className="text-base sm:text-lg font-semibold text-red-900 mb-4">
         🎯 Your Focus Muscles
       </h2>
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {focusData.map((focus) => {
           const { bar, status, badge } = getStatusColor(focus.sets, medianVolume);
           return (
             <div key={focus.muscle}>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium text-stone-900">{focus.muscle}</span>
-                <div className="flex items-center gap-2">
-                  <span className={`text-xs font-medium px-2 py-1 rounded ${badge}`}>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                <span className="font-medium text-stone-900 text-sm sm:text-base">{focus.muscle}</span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`text-xs font-medium px-2 py-1 rounded whitespace-nowrap ${badge}`}>
                     {status}
                   </span>
-                  <span className="text-sm text-stone-600">{focus.sets} sets</span>
+                  <span className="text-xs sm:text-sm text-stone-600 whitespace-nowrap">{focus.sets} sets</span>
                 </div>
               </div>
               <div className="bg-stone-100 rounded-full h-6 overflow-hidden">
@@ -96,7 +96,7 @@ export default function FocusSection({ volumes }: FocusSectionProps) {
           );
         })}
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-red-700 mt-3 sm:mt-4 leading-relaxed">
         💡 Keep training these muscles to reach your goals. Visit the Recommend
         page for targeted exercises.
       </p>

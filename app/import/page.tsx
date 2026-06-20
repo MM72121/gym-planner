@@ -127,9 +127,9 @@ export default function ImportPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold text-stone-900 mb-2">Import Workouts</h1>
-      <p className="text-stone-600 mb-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-2">Import Workouts</h1>
+      <p className="text-sm sm:text-base text-stone-600 mb-6 sm:mb-8">
         Upload your Strong app CSV export to add workouts to the database.
       </p>
 
@@ -146,13 +146,13 @@ export default function ImportPage() {
           const file = e.dataTransfer.files?.[0];
           if (file) handleFileSelect(file);
         }}
-        className={`border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
+        className={`border-2 border-dashed rounded-lg p-6 sm:p-12 text-center transition-colors ${
           isDragover
             ? "border-red-600 bg-red-50"
             : "border-stone-300 bg-stone-50 hover:border-stone-400"
         }`}
       >
-        <p className="text-stone-600 mb-4">
+        <p className="text-xs sm:text-base text-stone-600 mb-4">
           Drag and drop your Strong CSV file here, or click to select
         </p>
         <input
@@ -170,7 +170,7 @@ export default function ImportPage() {
           <button
             onClick={() => document.getElementById("file-input")?.click()}
             disabled={loading || saving}
-            className="px-6 py-2 bg-black text-white rounded hover:bg-stone-800 disabled:opacity-50 font-medium"
+            className="px-4 sm:px-6 py-2 text-sm sm:text-base bg-black text-white rounded hover:bg-stone-800 disabled:opacity-50 font-medium"
           >
             {loading ? "Parsing..." : "Select File"}
           </button>
@@ -180,7 +180,7 @@ export default function ImportPage() {
       {/* Messages */}
       {message && (
         <div
-          className={`mt-6 p-4 rounded-lg ${
+          className={`mt-4 sm:mt-6 p-4 rounded-lg text-xs sm:text-base ${
             message.type === "success"
               ? "bg-green-50 text-green-800 border border-green-200"
               : "bg-red-50 text-red-800 border border-red-200"
@@ -192,25 +192,25 @@ export default function ImportPage() {
 
       {/* Preview */}
       {preview && (
-        <div className="mt-8 bg-white border border-stone-200 rounded-lg p-6">
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-stone-900 mb-2">Preview</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-6 sm:mt-8 bg-white border border-stone-200 rounded-lg p-4 sm:p-6">
+          <div className="mb-4 sm:mb-6">
+            <h2 className="text-base sm:text-xl font-semibold text-stone-900 mb-2">Preview</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <div className="bg-stone-50 p-4 rounded">
-                <p className="text-sm text-stone-600">Workouts</p>
-                <p className="text-2xl font-bold text-stone-900">
+                <p className="text-xs sm:text-sm text-stone-600">Workouts</p>
+                <p className="text-xl sm:text-2xl font-bold text-stone-900">
                   {preview.workouts.length}
                 </p>
               </div>
               <div className="bg-stone-50 p-4 rounded">
-                <p className="text-sm text-stone-600">Total Sets</p>
-                <p className="text-2xl font-bold text-stone-900">
+                <p className="text-xs sm:text-sm text-stone-600">Total Sets</p>
+                <p className="text-xl sm:text-2xl font-bold text-stone-900">
                   {preview.totalSets}
                 </p>
               </div>
               <div className="bg-stone-50 p-4 rounded">
-                <p className="text-sm text-stone-600">Errors</p>
-                <p className="text-2xl font-bold text-stone-900">
+                <p className="text-xs sm:text-sm text-stone-600">Errors</p>
+                <p className="text-xl sm:text-2xl font-bold text-stone-900">
                   {preview.errors.length}
                 </p>
               </div>
@@ -218,17 +218,17 @@ export default function ImportPage() {
           </div>
 
           {/* Workouts List */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-stone-900 mb-4">
+          <div className="mb-4 sm:mb-6">
+            <h3 className="font-semibold text-stone-900 text-sm sm:text-base mb-3 sm:mb-4">
               Workouts to Import
             </h3>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <div className="space-y-2 sm:space-y-3 max-h-96 overflow-y-auto">
               {preview.workouts.map((workout, idx) => (
-                <div key={idx} className="border border-stone-200 rounded p-3">
-                  <p className="font-medium text-stone-900">
+                <div key={idx} className="border border-stone-200 rounded p-3 text-xs sm:text-sm">
+                  <p className="font-medium text-stone-900 break-words">
                     {workout.date} • {workout.name}
                   </p>
-                  <p className="text-sm text-stone-600">
+                  <p className="text-stone-600">
                     {workout.sets.length} sets
                   </p>
                 </div>
@@ -238,16 +238,16 @@ export default function ImportPage() {
 
           {/* New Exercises */}
           {preview.newExercises.length > 0 && (
-            <div className="mb-6 bg-blue-50 border border-blue-200 rounded p-4">
-              <p className="font-medium text-blue-900 mb-4">
+            <div className="mb-4 sm:mb-6 bg-blue-50 border border-blue-200 rounded p-3 sm:p-4">
+              <p className="font-medium text-blue-900 mb-3 sm:mb-4 text-sm">
                 Found {preview.newExercises.length} new exercise
                 {preview.newExercises.length !== 1 ? "s" : ""} - assign muscle
                 groups:
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {preview.newExercises.map((exercise) => (
-                  <div key={exercise} className="bg-white rounded p-3">
-                    <p className="font-medium text-stone-900 mb-2">{exercise}</p>
+                  <div key={exercise} className="bg-white rounded p-3 text-xs sm:text-sm">
+                    <p className="font-medium text-stone-900 mb-2 break-words">{exercise}</p>
                     <p className="text-xs text-stone-600 mb-3">
                       Select all muscle groups this exercise targets:
                     </p>
@@ -271,7 +271,7 @@ export default function ImportPage() {
                                 };
                               })
                             }
-                            className={`px-3 py-2 rounded text-sm font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer ${
+                            className={`px-2 sm:px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                               isSelected
                                 ? "bg-blue-600 text-white"
                                 : "bg-stone-200 text-stone-900 hover:bg-stone-300"
@@ -291,9 +291,9 @@ export default function ImportPage() {
 
           {/* Errors */}
           {preview.errors.length > 0 && (
-            <div className="mb-6 bg-red-50 border border-red-200 rounded p-4">
-              <p className="font-medium text-red-900 mb-2">Parsing Errors</p>
-              <ul className="text-sm text-red-800 space-y-1">
+            <div className="mb-4 sm:mb-6 bg-red-50 border border-red-200 rounded p-3 sm:p-4">
+              <p className="font-medium text-red-900 mb-2 text-sm">Parsing Errors</p>
+              <ul className="text-xs sm:text-sm text-red-800 space-y-1">
                 {preview.errors.slice(0, 5).map((err, idx) => (
                   <li key={idx}>• {err}</li>
                 ))}
@@ -305,12 +305,12 @@ export default function ImportPage() {
           )}
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6">
             <button
               type="button"
               onClick={() => setPreview(null)}
               disabled={saving || addingExercises}
-              className="px-6 py-2 border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50 font-medium cursor-pointer"
+              className="px-4 sm:px-6 py-2 text-xs sm:text-base border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50 font-medium cursor-pointer"
             >
               Cancel
             </button>
@@ -318,7 +318,7 @@ export default function ImportPage() {
               type="button"
               onClick={handleConfirm}
               disabled={saving || addingExercises || preview.workouts.length === 0}
-              className="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 font-medium cursor-pointer"
+              className="px-4 sm:px-6 py-2 text-xs sm:text-base bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 font-medium cursor-pointer"
             >
               {addingExercises ? "Adding exercises..." : saving ? "Importing..." : "Confirm & Import"}
             </button>

@@ -115,28 +115,28 @@ export default function VolumePage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold text-stone-900 mb-2">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-2">
         Muscle Volume (3 weeks)
       </h1>
-      <p className="text-stone-600 mb-8">
+      <p className="text-sm sm:text-base text-stone-600 mb-6 sm:mb-8">
         Track your set volume and tonnage per muscle group.
       </p>
 
       {/* Imbalances Section */}
       {imbalances.length > 0 && (
-        <div className="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-red-900 mb-4">
+        <div className="mb-6 sm:mb-8 bg-red-50 border border-red-200 rounded-lg p-4 sm:p-6">
+          <h2 className="text-base sm:text-lg font-semibold text-red-900 mb-4">
             ⚠️ Underworked Muscle Groups
           </h2>
-          <p className="text-red-800 mb-4">
+          <p className="text-sm sm:text-base text-red-800 mb-4">
             These muscle groups have less than 50% of the median volume:
           </p>
           <div className="flex flex-wrap gap-2">
             {imbalances.map((muscle) => (
               <span
                 key={muscle}
-                className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium"
+                className="bg-red-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap"
               >
                 {muscle}
               </span>
@@ -147,15 +147,15 @@ export default function VolumePage() {
 
       {/* Volume Table */}
       {volumes.length === 0 ? (
-        <div className="bg-white border border-stone-200 rounded-lg p-8">
-          <p className="text-stone-500">
+        <div className="bg-white border border-stone-200 rounded-lg p-6 sm:p-8">
+          <p className="text-sm sm:text-base text-stone-500">
             No workouts found in the past 3 weeks. Import a CSV to get started.
           </p>
         </div>
       ) : (
-        <div className="bg-white border border-stone-200 rounded-lg p-6">
+        <div className="bg-white border border-stone-200 rounded-lg p-4 sm:p-6">
           {/* Major Muscle Groups */}
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {volumes
               .filter((v) => isMajorMuscle(v.muscle_group))
               .map((volume) => {
@@ -165,27 +165,27 @@ export default function VolumePage() {
 
               return (
                 <div key={volume.muscle_group} className="flex flex-col gap-2">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-stone-900">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-medium text-stone-900 text-sm sm:text-base">
                         {volume.muscle_group}
                       </span>
                       {isFocused && (
-                        <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">
+                        <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
                           🎯 Focus
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-medium px-2 py-1 rounded ${badgeColor}`}>
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap text-xs sm:text-sm">
+                      <span className={`font-medium px-2 py-1 rounded whitespace-nowrap ${badgeColor}`}>
                         {statusBadge}
                       </span>
-                      <div className="text-sm text-stone-600 text-right">
-                        <span className="font-semibold text-stone-900">
+                      <div className="text-stone-600 sm:text-right flex gap-2">
+                        <span className="font-semibold text-stone-900 whitespace-nowrap">
                           {volume.set_count} sets
                         </span>
-                        <span className="mx-2">•</span>
-                        <span>{volume.tonnage.toFixed(0)} lbs</span>
+                        <span className="hidden sm:inline">•</span>
+                        <span className="whitespace-nowrap">{volume.tonnage.toFixed(0)} lbs</span>
                       </div>
                     </div>
                   </div>
@@ -208,17 +208,17 @@ export default function VolumePage() {
 
           {/* Minor Muscle Groups */}
           {volumes.some((v) => !isMajorMuscle(v.muscle_group)) && (
-            <div className="mt-8 pt-8 border-t border-stone-200">
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-stone-200">
               <button
                 onClick={() => setShowMinor(!showMinor)}
-                className="flex items-center gap-2 font-semibold text-stone-900 mb-4 hover:text-stone-700"
+                className="flex items-center gap-2 font-semibold text-stone-900 text-sm sm:text-base mb-4 hover:text-stone-700"
               >
                 <span>{showMinor ? "▼" : "▶"}</span>
                 Isolation Muscles ({volumes.filter((v) => !isMajorMuscle(v.muscle_group)).length})
               </button>
 
               {showMinor && (
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {volumes
                     .filter((v) => !isMajorMuscle(v.muscle_group))
                     .map((volume) => {
@@ -232,29 +232,29 @@ export default function VolumePage() {
                           key={volume.muscle_group}
                           className="flex flex-col gap-2"
                         >
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                              <span className="font-medium text-stone-900">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="font-medium text-stone-900 text-sm sm:text-base">
                                 {volume.muscle_group}
                               </span>
                               {isFocused && (
-                                <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">
+                                <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
                                   🎯 Focus
                                 </span>
                               )}
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-2 sm:gap-3 flex-wrap text-xs sm:text-sm">
                               <span
-                                className={`text-xs font-medium px-2 py-1 rounded ${badgeColor}`}
+                                className={`font-medium px-2 py-1 rounded whitespace-nowrap ${badgeColor}`}
                               >
                                 {statusBadge}
                               </span>
-                              <div className="text-sm text-stone-600 text-right">
-                                <span className="font-semibold text-stone-900">
+                              <div className="text-stone-600 sm:text-right flex gap-2">
+                                <span className="font-semibold text-stone-900 whitespace-nowrap">
                                   {volume.set_count} sets
                                 </span>
-                                <span className="mx-2">•</span>
-                                <span>{volume.tonnage.toFixed(0)} lbs</span>
+                                <span className="hidden sm:inline">•</span>
+                                <span className="whitespace-nowrap">{volume.tonnage.toFixed(0)} lbs</span>
                               </div>
                             </div>
                           </div>
@@ -279,12 +279,12 @@ export default function VolumePage() {
           )}
 
           {/* Legend */}
-          <div className="mt-8 pt-6 border-t border-stone-200">
-            <p className="text-sm font-medium text-stone-900 mb-3">Volume Status</p>
+          <div className="mt-6 sm:mt-8 pt-6 sm:pt-6 border-t border-stone-200">
+            <p className="text-xs sm:text-sm font-medium text-stone-900 mb-3">Volume Status</p>
             <div className="space-y-3 text-xs">
               <div>
-                <p className="font-medium text-stone-900 mb-2">Major Muscles:</p>
-                <div className="grid grid-cols-3 gap-4 ml-2">
+                <p className="font-medium text-stone-900 mb-2 text-xs sm:text-sm">Major Muscles:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 ml-0 sm:ml-2">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded bg-red-600"></div>
                     <span className="text-stone-600">&lt; 50% median</span>
@@ -300,8 +300,8 @@ export default function VolumePage() {
                 </div>
               </div>
               <div>
-                <p className="font-medium text-stone-900 mb-2">Isolation Muscles:</p>
-                <div className="grid grid-cols-3 gap-4 ml-2">
+                <p className="font-medium text-stone-900 mb-2 text-xs sm:text-sm">Isolation Muscles:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 ml-0 sm:ml-2">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded bg-red-600"></div>
                     <span className="text-stone-600">&lt; 25% median</span>

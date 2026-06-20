@@ -92,19 +92,19 @@ export default function ExercisesPage() {
     : exercises;
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold text-stone-900 mb-2">Exercises</h1>
-      <p className="text-stone-600 mb-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-2">Exercises</h1>
+      <p className="text-sm sm:text-base text-stone-600 mb-6 sm:mb-8">
         Browse all exercises. Click a muscle group to filter. Click edit to adjust muscle groups.
       </p>
 
       {/* Muscle Group Filter */}
-      <div className="mb-8">
-        <h2 className="font-semibold text-stone-900 mb-4">Filter by Muscle Group</h2>
+      <div className="mb-6 sm:mb-8">
+        <h2 className="font-semibold text-stone-900 mb-3 sm:mb-4 text-sm sm:text-base">Filter by Muscle Group</h2>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedMuscle(null)}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-colors whitespace-nowrap ${
               selectedMuscle === null
                 ? "bg-red-600 text-white"
                 : "bg-stone-200 text-stone-900 hover:bg-stone-300"
@@ -116,7 +116,7 @@ export default function ExercisesPage() {
             <button
               key={muscle}
               onClick={() => setSelectedMuscle(muscle)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-colors whitespace-nowrap ${
                 selectedMuscle === muscle
                   ? "bg-red-600 text-white"
                   : "bg-stone-200 text-stone-900 hover:bg-stone-300"
@@ -130,21 +130,21 @@ export default function ExercisesPage() {
 
       {/* Exercises List */}
       {loading ? (
-        <p className="text-stone-600">Loading exercises...</p>
+        <p className="text-sm sm:text-base text-stone-600">Loading exercises...</p>
       ) : filteredExercises.length === 0 ? (
-        <div className="bg-white border border-stone-200 rounded-lg p-8 text-center">
-          <p className="text-stone-600">No exercises found.</p>
+        <div className="bg-white border border-stone-200 rounded-lg p-6 sm:p-8 text-center">
+          <p className="text-sm sm:text-base text-stone-600">No exercises found.</p>
         </div>
       ) : (
         <div className="bg-white border border-stone-200 rounded-lg divide-y">
           {filteredExercises.map((exercise) =>
             editingId === exercise.id ? (
               // Edit Mode
-              <div key={exercise.id} className="p-6 bg-stone-50">
-                <h3 className="font-semibold text-stone-900 text-lg mb-4">
+              <div key={exercise.id} className="p-4 sm:p-6 bg-stone-50">
+                <h3 className="font-semibold text-stone-900 text-base sm:text-lg mb-4">
                   Edit: {exercise.name}
                 </h3>
-                <p className="text-sm text-stone-600 mb-3">
+                <p className="text-xs sm:text-sm text-stone-600 mb-3">
                   Select muscle groups this exercise targets:
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
@@ -160,7 +160,7 @@ export default function ExercisesPage() {
                               : [...prev, muscle]
                           )
                         }
-                        className={`px-3 py-2 rounded text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+                        className={`px-2 sm:px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1 ${
                           isSelected
                             ? "bg-red-600 text-white"
                             : "bg-stone-200 text-stone-900 hover:bg-stone-300"
@@ -172,24 +172,24 @@ export default function ExercisesPage() {
                     );
                   })}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={() => setEditingId(null)}
                     disabled={saving}
-                    className="px-4 py-2 border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50"
+                    className="px-3 sm:px-4 py-2 text-xs sm:text-sm border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSaveEdit}
                     disabled={saving || editMuscles.length === 0}
-                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                    className="px-3 sm:px-4 py-2 text-xs sm:text-sm bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
                   >
                     {saving ? "Saving..." : "Save"}
                   </button>
                   <button
                     onClick={() => setDeleteConfirm(exercise.id)}
-                    className="px-4 py-2 bg-red-900 text-white rounded hover:bg-red-950"
+                    className="px-3 sm:px-4 py-2 text-xs sm:text-sm bg-red-900 text-white rounded hover:bg-red-950"
                   >
                     Delete
                   </button>
@@ -197,14 +197,14 @@ export default function ExercisesPage() {
               </div>
             ) : (
               // View Mode
-              <div key={exercise.id} className="p-6 hover:bg-stone-50 transition-colors">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-stone-900 text-lg">
+              <div key={exercise.id} className="p-4 sm:p-6 hover:bg-stone-50 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                  <h3 className="font-semibold text-stone-900 text-base sm:text-lg">
                     {exercise.name}
                   </h3>
                   <button
                     onClick={() => startEdit(exercise)}
-                    className="text-sm px-3 py-1 bg-stone-200 text-stone-900 rounded hover:bg-stone-300"
+                    className="text-xs sm:text-sm px-3 py-1 bg-stone-200 text-stone-900 rounded hover:bg-stone-300 whitespace-nowrap"
                   >
                     Edit
                   </button>
@@ -233,7 +233,7 @@ export default function ExercisesPage() {
         </div>
       )}
 
-      <div className="mt-8 text-sm text-stone-600">
+      <div className="mt-6 sm:mt-8 text-xs sm:text-sm text-stone-600">
         Showing {filteredExercises.length} of {exercises.length} exercises
         {selectedMuscle && ` for ${selectedMuscle}`}
       </div>
@@ -241,23 +241,23 @@ export default function ExercisesPage() {
       {/* Delete Confirmation Modal */}
       {deleteConfirm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 max-w-sm">
-            <h2 className="text-lg font-semibold text-stone-900 mb-2">Delete Exercise?</h2>
-            <p className="text-stone-600 mb-6">
+          <div className="bg-white rounded-lg p-4 sm:p-6 max-w-sm w-full">
+            <h2 className="text-base sm:text-lg font-semibold text-stone-900 mb-2">Delete Exercise?</h2>
+            <p className="text-sm sm:text-base text-stone-600 mb-6">
               Are you sure you want to delete this exercise? This cannot be undone.
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => setDeleteConfirm(null)}
                 disabled={saving}
-                className="flex-1 px-4 py-2 border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50"
+                className="flex-1 px-4 py-2 text-sm sm:text-base border border-stone-300 text-stone-900 rounded hover:bg-stone-50 disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDeleteExercise(deleteConfirm)}
                 disabled={saving}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                className="flex-1 px-4 py-2 text-sm sm:text-base bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
               >
                 {saving ? "Deleting..." : "Delete"}
               </button>
