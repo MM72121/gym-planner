@@ -195,7 +195,7 @@ export default function ImportPage() {
         <div className="mt-8 bg-white border border-stone-200 rounded-lg p-6">
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-stone-900 mb-2">Preview</h2>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-stone-50 p-4 rounded">
                 <p className="text-sm text-stone-600">Workouts</p>
                 <p className="text-2xl font-bold text-stone-900">

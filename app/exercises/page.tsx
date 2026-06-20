@@ -147,7 +147,7 @@ export default function ExercisesPage() {
                 <p className="text-sm text-stone-600 mb-3">
                   Select muscle groups this exercise targets:
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                   {allMuscles.map((muscle) => {
                     const isSelected = editMuscles.includes(muscle);
                     return (
